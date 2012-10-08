@@ -1,0 +1,21 @@
+﻿####
+## Master & Slave
+####
+#qtd threads paralelas fazendo request (default=5)
+threads 20
+
+####
+## Master only
+####
+#override do host do servidor web para o qual faremos requests
+#host www.hostname.com.br
+
+#regex de match, deve conter grupo "path"
+#2012-10-02 14:10:25 W3SVC2 HOSTNAME 200.219.211.163 GET /imagens/2/9690.jpg - 80 - 205.251.222.45 HTTP/1.0 Amazon+CloudFront - - www.hostname.com.br 304 0 0 263 441 483
+match (?<datetime>[^ ]+ [^ ]+) (?<process>[^ ]+) (?<name>[^ ]+) (?<ip>[^ ]+) (?<method>[^ ]+) (?<path>[^ ]+) (?<query>[^ ]+) (?<port>[^ ]+)
+
+#regex de filtros
+filter ^#
+filter  POST
+filter /adm/
+filter /adm_antigo/
